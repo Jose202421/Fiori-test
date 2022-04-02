@@ -1,0 +1,37 @@
+<mvc:View   controllerName="joserojas.invoices.controller.InvoicesList"
+            xmlns="sap.m"
+            xmlns:mvc="sap.ui.core.mvc" >
+
+    <List   id="invoiceList"
+            headerText="{i18n>invoicesListTitle}" 
+            class="sapUiResponsiveMargin" 
+            width="auto"
+            items="{ path: 'northwind>/Invoices',
+                     sorter: { path : 'ShipperName',
+                               group : true}  }" >
+
+        <headerToolbar>
+            <Toolbar>
+                <Title text="{i18n>invoicesListTitle}"/>
+                <ToolbarSpacer />
+                <SearchField width="50%" search=".onFilterInvoices"></SearchField>
+            </Toolbar>
+        </headerToolbar>
+        <items >
+            <ObjectListItem title="{northwind>Quantity} x {northwind>ProductName}" 
+                            number="{ parts: [{ path: 'northwind>ExtendedPrice'},
+                                              { path: 'currency>/eur' }],
+                                      type:  'sap.ui.model.type.Currency',
+                                      formatOptions:{
+                                        showMeasure: false
+                                      }}"
+                            numberUnit="{currency>/eur}"
+                            numberState="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error' }"
+                            type="Navigation"
+                            press="onNavigateToDetails">
+            </ObjectListItem>
+        </items>
+
+    
+    </List>
+</mvc:View >

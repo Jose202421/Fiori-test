@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="joserojas.invoices.controller.Detail"
+    xmlns="sap.m" 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:jose="joserojas.invoices.control"
+    displayBlock="true">
+
+    <Page title="{i18n>InvoicesDetails}"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+        <ObjectHeader title= "{northwind>Quantity} x {northwind>ProductName}" >
+            <ObjectAttribute text="{northwind>ShipName}"/>     
+            <ObjectAttribute text="{northwind>ShipCity}"/>
+            <ObjectAttribute text="{northwind>ShipPostalCode}"/>
+            <ObjectAttribute text="{northwind>ShipCountry}"/>
+            <ObjectAttribute text="{northwind>CustomerID}"/>
+            <ObjectAttribute text="{northwind>CustomerName}"/>
+        </ObjectHeader> 
+
+
+        <jose:ProductRating id="rating" class="sapUiSmallMarginEnd" change=".onRatingChange" />
+    </Page>
+
+</mvc:View>
