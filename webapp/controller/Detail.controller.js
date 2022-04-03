@@ -16,6 +16,7 @@ sap.ui.define([
         return Controller.extend("joserojas.invoices.controller.Detail", {
 
             _onObjectMach: function (oEvent) {
+                this.getView().byId("rating").reset(),
                 this.getView().bindElement({
                     path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
                     model: "northwind"
