@@ -12,7 +12,7 @@ sap.ui.define([
         return Controller.extend("joserojas.invoices.controller.App", {
 
             onInit: function(){
-
+                this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass())
             },
         });
 

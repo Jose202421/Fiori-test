@@ -2,36 +2,68 @@
             xmlns="sap.m"
             xmlns:mvc="sap.ui.core.mvc" >
 
-    <List   id="invoiceList"
-            headerText="{i18n>invoicesListTitle}" 
-            class="sapUiResponsiveMargin" 
-            width="auto"
-            items="{ path: 'northwind>/Invoices',
-                     sorter: { path : 'ShipperName',
-                               group : true}  }" >
-
+    <Panel accessibleRole="Region">
         <headerToolbar>
             <Toolbar>
                 <Title text="{i18n>invoicesListTitle}"/>
                 <ToolbarSpacer />
-                <SearchField width="50%" search=".onFilterInvoices"></SearchField>
+                <SearchField width="50%" 
+                             search=".onFilterInvoices"
+                             placeholder="{i18n>searchFieldPlaceHolder}">
+                </SearchField>
             </Toolbar>
         </headerToolbar>
-        <items >
-            <ObjectListItem title="{northwind>Quantity} x {northwind>ProductName}" 
-                            number="{ parts: [{ path: 'northwind>ExtendedPrice'},
-                                              { path: 'currency>/eur' }],
-                                      type:  'sap.ui.model.type.Currency',
-                                      formatOptions:{
-                                        showMeasure: false
-                                      }}"
-                            numberUnit="{currency>/eur}"
-                            numberState="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error' }"
-                            type="Navigation"
-                            press="onNavigateToDetails">
-            </ObjectListItem>
-        </items>
 
-    
-    </List>
-</mvc:View >
+        <Table  id="invoiceList"
+                headerText="{i18n>invoicesListTitle}" 
+                class="sapUiResponsiveMargin" 
+                width="auto"
+                items="{ path: 'northwind>/Invoices',
+                        sorter: { path : 'ShipperName',
+                                group : true}  }" >
+
+            <columns>
+                <Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="5em">
+                    <Text text="{i18n>columnQuantity}"/>
+                </Column>
+                <Column >
+                    <Text text="{i18n>columnName}"/>
+                </Column>
+                <Column  minScreenWidth="Small" demandPopin="true">
+                    <Text text="{i18n>columnStatus}"/>
+                </Column>
+                <Column minScreenWidth="Tablet" >
+                    <Text text="{i18n>columnSupplier}"/>
+                </Column>
+                <Column hAlign="End">
+                    <Text text="{i18n>columnPrice}"/>
+                </Column>
+            </columns>
+            <items >
+                <ColumnListItem type="Navigation"
+                                press="onNavigateToDetails">
+
+                    <cells>
+                        <ObjectNumber number="{northwind>Quantity}" emphasized="false"/>
+                        <ObjectIdentifier title="{northwind>ProductName}"/>
+                        
+                        <Text text="{
+                                path: 'northwind>Status', 
+                                formatter: '.formatter.invoiceStatus'
+                            }"/>
+                        <Text text="{northwind>ShipperName}"/>
+                        <ObjectNumber number="{ parts: [{ path: 'northwind>ExtendedPrice'},
+                                            { path: 'currency>/eur' }],
+                                        type:  'sap.ui.model.type.Currency',
+                                        formatOptions:{
+                                            showMeasure: false
+                                        }}"
+                                        unit="{currency>/eur}"
+                                        state="{= ${northwind>ExtendedPrice} > 50 ? 'Success' : 'Error' }"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+    </Panel>
+</mvc:View>

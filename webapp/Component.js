@@ -2,17 +2,18 @@ sap.ui.define([
     'sap/ui/core/UIComponent',
     'joserojas/invoices/model/Models',
     'sap/ui/model/resource/ResourceModel',
-    './controller/HelloDialog'
+    './controller/HelloDialog', 
+    "sap/ui/Device"
 
 
 ],
     /**
      * @param( typeof sap.ui.core.UIComponent) UIComponent
      * @param( typeof sap.ui.model.resource.ResourceModel) ResourceModel
-     * 
+     * @param( typeof sap.ui.Device) Device
      */
 
-    function (UIComponent, Models, ResourceModel, HelloDialog) {
+    function (UIComponent, Models, ResourceModel, HelloDialog, Device) {
         'use strict';
 
         return UIComponent.extend("joserojas.invoices.Component", {
@@ -36,6 +37,10 @@ sap.ui.define([
                 //var i18nModel = new ResourceModel({ bundleName: "joserojas.invoices.i18n.i18n" });
                 //this.setModel(i18nModel, "i18n");
 
+
+                //set Device Model
+                this.setModel(Models.createDeviceModel(), "device")
+
                 this._helloDialog = new HelloDialog(this.getRootControl())
 
                 // get router
@@ -49,6 +54,15 @@ sap.ui.define([
 
             openHelloDialog: function(){
                 this._helloDialog.open();
+            }, 
+
+            getContentDensityClass: function(){
+                if (!Device.support.touch){
+                    this.sContentDensityClass = "sapUiSizeCompact";
+                } else{
+                    this.sContentDensityClass = "sapUiSizeCozi";
+                }
+                return this.sContentDensityClass;
             }
 
         });
