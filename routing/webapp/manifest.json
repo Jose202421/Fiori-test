@@ -83,16 +83,24 @@
                 "pattern": "",
                 "name": "appHome",
                 "target": "home"
-            },{
+            },
+            {
                 "pattern": "employees",
                 "name": "employeeList", 
                 "target": "employees"
-            }, {
+            },
+            {
+                "pattern": "employees/overview",
+                "name": "employeeOverView", 
+                "target": ["employeeOverviewTop", "employeeOverviewContent"  ] 
+            },
+            {
                 "pattern": "employees/{employeeId}",
                 "name": "employee",
                 "target": "employee"
                 
-            },{
+            },
+            {
                 "pattern": "employees/{employeeId}/resume:?query:", 
                 "name": "employeeResume", 
                 "target": "employeeResume"
@@ -128,8 +136,47 @@
                     "name": "employee.Resume", 
                     "level": 4, 
                     "transition": "flip"
-                }
+                }, 
+                "resumenTabHobbies": {
+                    "id": "resumenHobbies", 
+                    "parent": "employeeResume",
+                    "path": "joserojas.routing.view.employee",
+                    "name": "ResumeHobbies",
+                    "controlId": "hobbiesTab", 
+                    "controlAggregation": "content"
+                }, 
 
+                "resumeTabNotes": {
+                    "id": "resumenNotes", 
+                    "parent": "employeeResume",
+                    "path": "joserojas.routing.view.employee",
+                    "name": "ResumeNotes",
+                    "controlId": "notesTab", 
+                    "controlAggregation": "content"
+                }, 
+
+                "employeeOverview": {
+                    "id": "employeeOverview", 
+                    "path": "joserojas.routing.view.employee.overview",
+                    "name": "EmployeeOverview",
+                    "level": 2                  
+                }, 
+                "employeeOverviewTop": {
+                    "id": "employeeOverviewTop", 
+                    "parent": "employeeOverview",
+                    "path": "joserojas.routing.view.employee.overview",
+                    "name": "EmployeeOverviewTop",
+                    "controlId": "EmployeeOverviewParent", 
+                    "controlAggregation": "content"
+                }, 
+                "employeeOverviewContent": {
+                    "id": "employeeOverviewContent", 
+                    "parent": "employeeOverview",
+                    "path": "joserojas.routing.view.employee.overview",
+                    "name": "EmployeeOverviewContent",
+                    "controlId": "EmployeeOverviewParent", 
+                    "controlAggregation": "content"
+                }
             }
 
         }

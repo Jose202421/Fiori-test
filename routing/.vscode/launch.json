@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "routing",
+      "name": "routing-config1",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": [
         "fiori",
@@ -20,10 +20,11 @@
       },
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
       "env": {
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/routing\"}",
-        "FIORI_TOOLS_UI5_VERSION": "1.99.0",
-        "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"path\":\"/sap\",\"url\":\"http://localhost\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
       }
     }
   ]
