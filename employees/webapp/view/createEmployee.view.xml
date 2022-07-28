@@ -1,0 +1,143 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="joserojas.employees.controller.createEmployee"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:u="sap.ui.unified"
+    xmlns:l="sap.ui.layout"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <NavContainer id="wizardNavContainer" >
+        <pages >
+            <Page id="wizardContentPage" >
+                <content>
+                    <Wizard id="createEmployeeWizard" 
+                            class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                            complete="wizardCompleteHandler" >
+                        <WizardStep id="employeeTypeStep" 
+                                    title="{i18n>tipoEmpleado}"
+                                    validated="false">
+                            <MessageStrip class="sapUiSmallMarginBottom"
+                                text="{i18n>msgEmployeeTypeStep}"
+                                showIcon="true"/>
+                            
+                            <HBox 
+                                alignItems="Center"
+                                justifyContent="Center"
+                                width="100%">
+                                <Button text="{i18n>interno}" press="onGoStep2" class="sapUiSmallMarginEnd">
+                                    <customData>
+                                        <core:CustomData key="typeEmployee" value="interno"></core:CustomData>
+                                    </customData>
+                                </Button>
+                                <Button text="{i18n>autonomo}" press="onGoStep2" class="sapUiSmallMarginEnd">
+                                    <customData>
+                                        <core:CustomData key="typeEmployee" value="autonomo"></core:CustomData>
+                                    </customData>
+                                </Button>
+                                <Button text="{i18n>gerente}" press="onGoStep2" class="sapUiSmallMarginEnd">
+                                    <customData>
+                                        <core:CustomData key="typeEmployee" value="gerente"></core:CustomData>
+                                    </customData>
+                                </Button>
+                            </HBox>             
+                        </WizardStep>
+
+                        <WizardStep id="dataEmployeeStep" 
+                                    validated="false"
+                                    title="{i18n>datosEmpleado}">
+                            <MessageStrip class="sapUiSmallMarginBottom"
+                                text="{i18n>msmEmployeeDataStep}"
+                                showIcon="true"/>
+
+                            <form:SimpleForm editable="true" >
+                                <Label text="{i18n>nombre}" required="true"/>
+                                <Input  valueState="{/_FirsNameState}" editable="true" change="onDataEmployeeValidation" value="{/FirstName}"/>
+
+                                <Label text="{i18n>apellidos}" required="true"/>
+                                <Input  valueState="{/_LastNameState}" editable="true" change="onDataEmployeeValidation" value="{/LastName}"/>
+
+                                <Label text="{= ${/_type} === 'autonomo' ? ${i18n>cif} : ${i18n>dni}}" required="true" />
+                                <Input  valueState="{/_DniState}" change="onValidateDni"  value="{/Dni}" editable="true"/>
+
+                                <Label text="{= ${/_type} === 'autonomo' ? ${i18n>salario} : ${i18n>precio}}" visible="true"/>
+                                <VBox >
+                                    <Slider     visible="{= ${/_type} === 'interno'}" showAdvancedTooltip="true" enableTickmarks="true"
+                                                min="12000" max="80000" step="1000" value="{/_Salary}" 
+                                                class="sapUiLargeMarginBottom" width="100%" >
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                    </Slider>
+                                    
+                                    <Slider     visible="{= ${/_type} === 'gerente'}" showAdvancedTooltip="true" enableTickmarks="true"
+                                                min="50000" max="200000" step="1000" value="{/_Salary}" 
+                                                class="sapUiLargeMarginBottom" width="100%" >
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                    </Slider>
+
+                                    <Slider     visible="{= ${/_type} === 'autonomo'}" showAdvancedTooltip="true" enableTickmarks="true"
+                                                min="100" max="2000" step="100" value="{/_Salary}" 
+                                                class="sapUiLargeMarginBottom" width="100%" >
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                    </Slider>                             
+                                </VBox>
+
+                                <Label text="{i18n>fechaIncorporacion}" required="true" visible="true" />
+                                <DatePicker 
+                                    width="100%"
+                                    dateValue="{/CreationDate}"
+                                    valueState="{/_CreationDateState}"
+                                    change="onDataEmployeeValidation" />
+                                                       
+                            </form:SimpleForm>
+                        </WizardStep>
+                        
+                        <WizardStep id="employeeInfoStep" 
+                                    title="{i18n>infoEmpleado}"                                    
+                                    validated="true"
+                                    activate="optionalStepActivation" >
+
+                            <MessageStrip   class="sapSmallMarginBottom"
+                                            text="{i18n>msmEmployeeInfoStep}"
+                                            showIcon="true"/>
+
+                            <Text text="{i18n>comentario}"/>
+                            <TextArea  value="{/Comments}" growing="true" growingMaxLines="10" width="100%"/>
+
+                            <UploadCollection   id="UploadCollection"    
+                                                maximumFilenameLength="55"
+                                                maximumFileSize="10"
+                                                multiple="true"
+                                                sameFilenameAllowed="true"
+                                                instantUpload="false"
+                                                uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments"
+                                                change="onFileChange"
+                                                uploadComplete="onFileUploadComplete"
+                                                beforeUploadStarts="onFileBeforeUpload"
+                                                fileDeleted="onFileDeleted" />
+
+                        </WizardStep>
+               
+                    </Wizard>
+                </content>
+            
+                <footer >
+                    <Toolbar >
+                            <ToolbarSpacer />
+                            <Button text="{i18n>cancelar}" press="onCancel"></Button>
+                    </Toolbar> 
+                </footer>
+            </Page>
+            <Page id="ReviewPage" title="{i18n>resumen}">
+                <core:Fragment fragmentName="joserojas.employees.fragment.ReviewPage" type="XML"/>
+                <footer>
+                    <Toolbar >
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        	<Button text="{i18n>guardar}" press="onSaveEmployee"></Button>
+							<Button text="{i18n>cancelar}" press="onCancel"></Button>
+                    </Toolbar>
+                </footer>
+            
+            </Page>
+        </pages>  
+
+    </NavContainer>
+</mvc:View >

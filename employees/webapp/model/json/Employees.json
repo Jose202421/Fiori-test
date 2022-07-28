@@ -1,0 +1,151 @@
+{
+    "Employees": [
+        {
+            "EmployeeID": "1",
+            "LastName": "Rojas Sanchez",
+            "FirstName": "José",
+            "Title": "Sales representative",
+            "Country": "ES",
+            "City": "Madrid",
+            "PostalCode": "79098",
+            "Orders": [
+                {
+                    "OrderID": "208",
+                    "Freight": "65",
+                    "ShipAddress": "Calle Alcala"
+                },
+                {
+                    "OrderID": "2096",
+                    "Freight": "21",
+                    "ShipAddress": "Calle mayor"
+                }
+            ]
+        },
+        {
+            "EmployeeID": "2",
+            "LastName": "Rojas Teran",
+            "FirstName": "Mateo",
+            "Title": "Sales representative",
+            "Country": "US",
+            "City": "Seattle",
+            "PostalCode": "79333",
+            "Orders": [
+                {
+                    "OrderID": "300",
+                    "Freight": "23",
+                    "ShipAddress": "Calle Valera"
+                },
+                {
+                    "OrderID": "345",
+                    "Freight": "88",
+                    "ShipAddress": "Calle salvador"
+                }
+            ]
+        },
+        {
+            "EmployeeID": "3",
+            "LastName": "Rojas Teran",
+            "FirstName": "Marcelo",
+            "Title": "Sales representative",
+            "Country": "UK",
+            "City": "London",
+            "PostalCode": "3456222",
+            "Orders": [
+                {
+                    "OrderID": "650",
+                    "Freight": "88",
+                    "ShipAddress": "New street"
+                },
+                {
+                    "OrderID": "964",
+                    "Freight": "87",
+                    "ShipAddress": "Around te see"
+                }
+            ]
+        },
+        {
+            "EmployeeID": "4",
+            "LastName": "García Lopez",
+            "FirstName": "María",
+            "Title": "Sales representative",
+            "Country": "ES",
+            "City": "Madrid",
+            "PostalCode": "28021",
+            "Orders": [
+                {
+                    "OrderID": "208",
+                    "Freight": "65",
+                    "ShipAddress": "Calle Alcala"
+                },
+                {
+                    "OrderID": "2096",
+                    "Freight": "21",
+                    "ShipAddress": "Calle Mayor"
+                }
+            ]
+        },
+        {
+            "EmployeeID": "5",
+            "LastName": "Fernandez Díaz",
+            "FirstName": "Pedro",
+            "Title": "Sales representative",
+            "Country": "ES",
+            "City": "Granada",
+            "PostalCode": "18008",
+            "Orders": [
+                {
+                    "OrderID": "1056",
+                    "Freight": "78",
+                    "ShipAddress": "Calle Alcala"
+                },
+                {
+                    "OrderID": "6731",
+                    "Freight": "90",
+                    "ShipAddress": "Calle Mayor"
+                }
+            ]
+        },
+        {
+            "EmployeeID": "6",
+            "LastName": "Davolio",
+            "FirstName": "Nancy",
+            "Title": "Sales representative",
+            "Country": "US",
+            "City": "Seattle",
+            "PostalCode": "98052",
+            "Orders": [
+                {
+                    "OrderID": "789",
+                    "Freight": "34",
+                    "ShipAddress": "1029 - 12th Ave. S."
+                },
+                {
+                    "OrderID": "3057",
+                    "Freight": "12",
+                    "ShipAddress": "2732 Baker Blvd."
+                }
+            ]
+        },
+        {
+            "EmployeeID": "6",
+            "LastName": "Buchanan",
+            "FirstName": "Steven",
+            "Title": "Sales representative",
+            "Country": "UK",
+            "City": "London",
+            "PostalCode": "67059",
+            "Orders": [
+                {
+                    "OrderID": "10",
+                    "Freight": "57",
+                    "ShipAddress": "Brook Farm Stratford St. Mary"
+                },
+                {
+                    "OrderID": "2010",
+                    "Freight": "89",
+                    "ShipAddress": "Fauntleroy Circus"
+                }
+            ]
+        }
+    ]
+}

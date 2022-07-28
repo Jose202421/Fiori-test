@@ -1,0 +1,39 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="joserojas.employees.controller.main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m">
+    
+    <Page title="{i18n>menuPrincipal}">
+        <Panel expandable="true" expanded="true" headerText="{i18n>empleado}" width="auto" class="sapUiResponsiveMargin" >
+            <content>
+                <GenericTile class= "sapUiTinyMarginBegin sapUiTinyMarginTop" press="onCreateEmployee"  >
+                    <TileContent  footer="{i18n>crearEmpleado}"  >
+                        <ImageContent src= "sap-icon://add-employee"  />
+                        
+                    </TileContent>               
+                </GenericTile>
+
+                <GenericTile class= "sapUiTinyMarginBegin sapUiTinyMarginTop"  press="onSeeEmployee" >
+                    <TileContent  footer="{i18n>verEmpleado}" >
+                        <ImageContent src= "sap-icon://employee-lookup"  />
+                    
+                    </TileContent>               
+                </GenericTile>
+            </content>
+        </Panel> 
+
+        <Panel expandable="true" expanded="true" headerText="{i18n>pedidos}" width="auto" class="sapUiResponsiveMargin">
+            <content>
+                <GenericTile class= "sapUiTinyMarginBegin sapUiTinyMarginTop"  press="onSignOrder" >
+                    <TileContent  footer="{i18n>firmarOrden}"  >
+                        <ImageContent src= "sap-icon://signature"  />
+                    
+                    </TileContent>               
+                </GenericTile>
+            </content>
+        </Panel> 
+    </Page>
+</mvc:View>
+
+
+     

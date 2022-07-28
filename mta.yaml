@@ -1,0 +1,38 @@
+_schema-version: "3.2"
+ID: HR2
+version: 0.0.1
+modules:
+- name: hr2-approuter
+  type: approuter.nodejs
+  path: hr2-approuter
+  requires:
+  - name: HR2_html_repo_runtime
+  - name: uaa_HR2
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: HR2_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: HR2_html_repo_host
+    parameters:
+      content-target: true
+resources:
+- name: HR2_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: uaa_HR2
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: HR2-xsuaa-service
+    service-plan: application
+- name: HR2_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
